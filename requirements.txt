@@ -1,0 +1,5 @@
+requests>=2.31.0
+geopy>=2.3.0
+fastmcp>=0.1.0
+mcp>=1.0.0
+uvicorn>=0.24.0

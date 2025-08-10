@@ -148,16 +148,47 @@ servers/*/weather_data/
 servers/*/geocoded_locations/
 servers/*/flights/
 
+# Project-specific data directories (current layout)
+flight_server/flights/
+event_server/data/
+hotel_server/data/
+weather_server/data/
+geocoder_server/geocoded_locations/
+finance_server/data/
+data/
+ssl/
+
+# Replit
+.replit
+replit.nix
+
+# Direnv
+.direnv/
+.envrc
+
 # Lock files
 uv.lock
 
+# Shell scripts and deployment files
+*.sh
+deploy.sh
+run_*.sh
 
+# Duplicate and temporary files
+*_backup.*
+*_old.*
+*_temp.*
+combined_*
+unified_*
 
+# Build and distribution directories
+unified_travel_concierge.egg-info/
 
 # Backup files
 *~
 *.bak
 
-# Do not ignore documentation or code files
+# Do not ignore main server file and documentation
 !README.md
-!*.py 
+!*.py
+!travel_server.py 

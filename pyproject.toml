@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unified-travel-concierge"
+version = "1.0.0"
+description = "Unified MCP server providing comprehensive travel planning services"
+authors = [
+    {name = "Travel Concierge Team", email = "support@travelconcierge.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "geopy>=2.3.0",
+    "fastmcp>=0.1.0",
+    "mcp>=1.0.0",
+    "uvicorn>=0.24.0",
+    "fastapi>=0.110.0",
+    "python-dotenv>=1.0.1",
+    "amadeus>=12.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/unified-travel-concierge"
+Repository = "https://github.com/yourusername/unified-travel-concierge.git"
+Issues = "https://github.com/yourusername/unified-travel-concierge/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["unified_travel_server*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 100

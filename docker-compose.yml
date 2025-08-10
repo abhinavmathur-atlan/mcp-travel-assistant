@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  # Unified Travel Concierge Server
+  unified-travel-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SERPAPI_KEY=${SERPAPI_KEY}
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: Keep individual servers for backward compatibility
+  # Uncomment if you need to run individual services alongside the unified server
+  
+  # flight-server:
+  #   build:
+  #     context: ./flight_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8001:8001"
+  #   environment:
+  #     - SERPAPI_KEY=${SERPAPI_KEY}
+  #   volumes:
+  #     - ./data/flights:/app/flights
+  #   restart: unless-stopped
+
+  # hotel-server:
+  #   build:
+  #     context: ./hotel_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8002:8002"
+  #   environment:
+  #     - SERPAPI_KEY=${SERPAPI_KEY}
+  #   volumes:
+  #     - ./data/hotels:/app/hotels
+  #   restart: unless-stopped
+
+  # event-server:
+  #   build:
+  #     context: ./event_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8003:8003"
+  #   environment:
+  #     - SERPAPI_KEY=${SERPAPI_KEY}
+  #   volumes:
+  #     - ./data/events:/app/events
+  #   restart: unless-stopped
+
+  # geocoder-server:
+  #   build:
+  #     context: ./geocoder_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8004:8004"
+  #   volumes:
+  #     - ./data/geocoded_locations:/app/geocoded_locations
+  #   restart: unless-stopped
+
+  # weather-server:
+  #   build:
+  #     context: ./weather_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8005:8005"
+  #   volumes:
+  #     - ./data/weather_data:/app/weather_data
+  #   restart: unless-stopped
+
+  # finance-server:
+  #   build:
+  #     context: ./finance_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8006:8006"
+  #   environment:
+  #     - SERPAPI_KEY=${SERPAPI_KEY}
+  #   volumes:
+  #     - ./data/finance:/app/finance
+  #   restart: unless-stopped
+
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #     - ./ssl:/etc/ssl/certs
+  #   depends_on:
+  #     - unified-travel-server
+  #   restart: unless-stopped
+
+volumes:
+  data:
+    driver: local

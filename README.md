@@ -1,304 +1,357 @@
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/skarlekar-mcp-travelassistant-badge.png)](https://mseep.ai/app/skarlekar-mcp-travelassistant)
+# 🌟 MCP Travel Concierge Server
 
-# 🌍 Travel Assistant MCP Server Ecosystem
+> **The Ultimate AI Travel Planning Assistant** - A comprehensive MCP (Model Context Protocol) server that combines the best of Google Travel Services with Amadeus Professional Systems.
 
-A comprehensive suite of Model Context Protocol (MCP) servers that work together to provide intelligent travel planning and assistance. This ecosystem enables Claude to orchestrate multiple specialized services to create detailed travel itineraries, find optimal flights and accommodations, discover local events, analyze weather conditions, and manage budget considerations across different currencies.
+## 🚀 Overview
 
-![MCP](https://img.shields.io/badge/MCP-Compatible-blue)
-![Python](https://img.shields.io/badge/Python-3.8+-green)
-![Travel](https://img.shields.io/badge/Travel-Planning-orange)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+This Travel Concierge Server integrates **two powerful travel platforms** into one comprehensive solution:
 
-## 🎯 System Overview
+- 🌐 **Google Travel Services** (via SerpAPI) - Consumer-friendly search across flights, hotels, and events
+- 🏢 **Amadeus Global Distribution System** - Professional travel industry inventory and pricing
 
-The Travel Assistant MCP Ecosystem consists of six specialized servers that work in harmony:
+Get the **best of both worlds**: consumer accessibility with professional depth!
 
-- **🛫 Flight Search Server** - Find and compare flights, analyze pricing, filter by preferences
-- **🏨 Hotel Search Server** - Discover accommodations, compare amenities, filter by budget and preferences  
-- **🎭 Event Search Server** - Find local events, festivals, and activities
-- **🗺️ Geocoder Server** - Convert locations to coordinates, calculate distances, reverse geocoding
-- **🌤️ Weather Search Server** - Get forecasts, current conditions, weather alerts
-- **💰 Finance Search Server** - Currency conversion, exchange rates, financial analysis
+## ✨ Key Features
 
-## 🚀 Real-World Example: Orchestrating a Comprehensive Travel Plan using a LLM
+### ✈️ Dual Flight Search
+- **Google Flights**: Consumer-friendly pricing, popular routes, price insights
+- **Amadeus GDS**: Professional airline inventory, detailed fare classes, real-time availability
 
-**User Request**: *"I am planning a trip to Banff and Jasper in Alberta from Reston, Virginia during June 7th 2025 to June 14th 2025. Find flights, hotels and events that are happening in Banff, Alberta and things to do for me and my wife during the time based on weather conditions. We like to hike, go sight-seeing, dining, and going to museums. My budget is $5000 USD. Make sure to convert cost from Canadian dollars to USD before presenting."*
+### 🏨 Comprehensive Hotel Search
+- **Google Hotels**: Vacation rentals, boutique properties, consumer reviews
+- **Amadeus Hotels**: Professional rates, real-time availability, business travel optimization
 
-### 🎼 Orchestrated Response Sequence
+### 🎭 Complete Event & Activity Discovery
+- **Google Events**: Local festivals, concerts, cultural events
+- **Amadeus Activities**: Professional tours, curated experiences, verified operators
 
-Here's how Claude orchestrates the MCP servers to fulfill this complex request:
+### 🌍 Additional Services
+- **Geocoding & Distance Calculation**: Precise location services
+- **Weather Intelligence**: Real-time conditions and forecasts
+- **Currency Conversion**: Live exchange rates
+- **Financial Tracking**: Travel industry stock monitoring
 
-#### Step 1: Location Intelligence 🗺️
-- Use the **Geocoder Server** to convert "Reston, Virginia", "Banff, Alberta", and "Jasper, Alberta" into latitude/longitude coordinates.
-- Calculate distances between locations for itinerary planning.
+## 🛠️ Installation & Setup
 
-#### Step 2: Flight Discovery ✈️
-- Use the **Flight Server** to search for flights from the nearest airport to Reston, VA (e.g., IAD) to Calgary, AB (nearest to Banff/Jasper) for the specified dates.
-- Filter by price, duration, and preferred airlines.
-- Retrieve detailed flight information, including layovers, baggage policies, and total cost
+### 1. Clone and Install Dependencies
 
-#### Step 3: Accommodation Search 🏨
-- Use the **Hotel Server** to find hotels or vacation rentals in Banff and Jasper for the trip dates.
-- Filter by price, amenities (e.g., free WiFi, breakfast), and guest ratings.
-- Retrieve detailed property information, compare top options, and analyze total accommodation cost.
-
-#### Step 4: Weather Analysis 🌤️
-- Use the **Weather Server** to get daily/hourly forecasts for Banff and Jasper.
-- Assess weather suitability for outdoor activities and suggest optimal days for hiking or sightseeing.
-
-#### Step 5: Event & Activity Discovery 🎭
-- Use the **Event Server** to find local events, festivals, and activities in Banff and Jasper during the trip.
-- Filter by interests (hiking, sightseeing, dining, museums).
-
-#### Step 6: Financial Analysis 💰
-- Use the **Finance Server** to convert all costs (hotels, events, etc.) from CAD to USD.
-- Ensure the total plan fits within the $5000 USD budget.
-
-#### Step 7: Intelligent Synthesis 🧠
-Claude synthesizes all data to create:
-- **Optimized flight options** with price comparisons
-- **Curated hotel recommendations** matching preferences and budget
-- **Weather-appropriate activity scheduling** 
-- **Day-by-day itinerary** with backup options for weather
-- **Complete budget breakdown** in USD with currency conversion
-- **Distance and travel time calculations** between locations
-- Presents a day-by-day itinerary, recommends activities based on weather and interests, and provides a budget breakdown in USD.
-
-## 🎯 Why MCP Makes This Possible
-
-### Cross-Server Integration
-- **Unified Protocol**: All servers use the same MCP specification, enabling seamless communication
-- **Standardized Data Formats**: Consistent JSON structures across different domains
-- **Shared Context**: Claude maintains conversation state across multiple server interactions
-
-### Intelligent Sequencing  
-- **Dependency Management**: Claude understands that geocoding must happen before weather forecasts
-- **Conditional Logic**: Flight searches trigger hotel searches in destination cities
-- **Error Handling**: If one server fails, Claude can adapt the sequence dynamically
-
-### Real-Time Processing
-- **Parallel Execution**: Multiple servers can be queried simultaneously when dependencies allow
-- **Live Data**: All servers provide real-time information (flights, weather, events, exchange rates)
-- **Dynamic Filtering**: Results from one server inform the parameters for another
-
-### Data Synthesis
-- **Multi-Domain Analysis**: Combines weather data with event scheduling and activity recommendations
-- **Budget Optimization**: Currency conversion enables accurate budget tracking across international trips
-- **Preference Matching**: Filters activities based on stated interests (hiking, museums, dining)
-
-## Server Capabilities at a Glance
-
-| Server         | Key Tools/Resources/Prompts                                      | Example Use Cases                                  |
-|----------------|------------------------------------------------------------------|----------------------------------------------------|
-| **Flight**     | `search_flights`, `get_flight_details`, `filter_flights_by_price`| Find and compare flights, analyze options          |
-| **Hotel**      | `search_hotels`, `get_hotel_details`, `filter_hotels_by_price`   | Find hotels/rentals, filter by amenities, compare  |
-| **Event**      | `search_events`, `get_event_details`, `filter_events_by_date`    | Discover local events, filter by type/date         |
-| **Weather**    | `get_weather_forecast`, `get_current_conditions`, `filter_forecast_by_conditions` | Plan activities based on weather, get alerts       |
-| **Geocoder**   | `geocode_location`, `reverse_geocode`, `calculate_distance`      | Convert addresses, plan routes, calculate distances|
-| **Finance**    | `convert_currency`, `lookup_stock`, `get_market_overview`        | Convert costs, analyze budget, get market data     |
-
----
-
-## 🛠️ Complete Installation Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- [UV](https://docs.astral.sh/uv/) package manager
-- Claude Desktop application
-- API keys for required services
-
-### Required API Keys
-- **SerpAPI Key** (for flights, hotels, events) - [Get free key](https://serpapi.com/)
-- **OpenWeatherMap** or use National Weather Service (free)
-- **OpenStreetMap Nominatim** (free, no key required)
-
-### Step-by-Step Setup
-
-1. **Create project directory:**
 ```bash
-mkdir travel-assistant-mcp
-cd travel-assistant-mcp
+# Clone the repository
+git clone https://github.com/your-username/mcp_travelassistant.git
+cd mcp_travelassistant
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-2. **Clone all server repositories:**
+### 2. Set Up Environment Variables
+
+Create a `.env` file in the project root with your API keys:
+
 ```bash
-# Create subdirectories for each server
-mkdir flight-search hotel-search event-search geocoder weather-search finance-search
+# Copy the example environment file
+cp env.example .env
 ```
 
-3. **Install dependencies for each server:**
-```bash
-# In each server directory
-uv sync
+Edit the `.env` file with your actual API keys:
+
+```env
+# Required API Keys
+SERPAPI_KEY=your_serpapi_key_here
+AMADEUS_API_KEY=your_amadeus_api_key_here
+AMADEUS_API_SECRET=your_amadeus_api_secret_here
+EXCHANGE_RATE_API_KEY=your_exchange_rate_api_key_here
 ```
 
-4. **Configure Claude Desktop:**
+**Where to get API keys:**
+- **SERPAPI_KEY**: Get from [SerpAPI](https://serpapi.com/)
+- **AMADEUS_API_KEY** & **AMADEUS_API_SECRET**: Get from [Amadeus for Developers](https://developers.amadeus.com/)
+- **EXCHANGE_RATE_API_KEY**: Get from [ExchangeRate-API](https://exchangerate-api.com/)
 
-Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
+### 3. Run the Server
+
+```bash
+python travel_server.py
+```
+
+## 🔧 MCP Configuration
+
+### For Claude Desktop
+
+Add this configuration to your Claude Desktop config file (usually located at `~/.cursor/mcp.json` or `~/Library/Application Support/Claude/claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
-    "flight-search": {
-      "command": "uv",
-      "args": [
-        "--directory", "/path/to/travel-assistant-mcp/flight-search",
-        "run", "python", "flight_search_server.py"
-      ],
+    "travel-concierge": {
+      "command": "python",
+      "args": ["combined_travel_server.py"],
+      "cwd": "/path/to/your/mcp_travelassistant",
       "env": {
-        "SERPAPI_KEY": "your_serpapi_key"
-      }
-    },
-    "hotel-search": {
-      "command": "uv", 
-      "args": [
-        "--directory", "/path/to/travel-assistant-mcp/hotel-search",
-        "run", "python", "hotel_search_server.py"
-      ],
-      "env": {
-        "SERPAPI_KEY": "your_serpapi_key"
-      }
-    },
-    "event-search": {
-      "command": "uv",
-      "args": [
-        "--directory", "/path/to/travel-assistant-mcp/event-search", 
-        "run", "python", "event_search_server.py"
-      ],
-      "env": {
-        "SERPAPI_KEY": "your_serpapi_key"
-      }
-    },
-    "geocoder": {
-      "command": "uv",
-      "args": [
-        "--directory", "/path/to/travel-assistant-mcp/geocoder",
-        "run", "python", "geocoder_server.py" 
-      ]
-    },
-    "weather-search": {
-      "command": "uv",
-      "args": [
-        "--directory", "/path/to/travel-assistant-mcp/weather-search",
-        "run", "python", "weather_search_server.py"
-      ]
-    },
-    "finance-search": {
-      "command": "uv", 
-      "args": [
-        "--directory", "/path/to/travel-assistant-mcp/finance-search",
-        "run", "python", "finance_search_server.py"
-      ],
-      "env": {
-        "SERPAPI_KEY": "your_serpapi_key"
+        "SERPAPI_KEY": "your_serpapi_key_here",
+        "AMADEUS_API_KEY": "your_amadeus_api_key_here", 
+        "AMADEUS_API_SECRET": "your_amadeus_api_secret_here",
+        "EXCHANGE_RATE_API_KEY": "your_exchange_rate_api_key_here"
       }
     }
   }
 }
 ```
 
-5. **Restart Claude Desktop** to load all servers.
+### For UV Package Manager
 
-## 💡 Advanced Usage Examples
+If you're using UV, you can use this configuration:
 
-### Weekend Getaway Planning
-```
-Plan a weekend trip from San Francisco to Portland, Oregon for next weekend. 
-We want to visit breweries, food trucks, and outdoor markets. Budget is $1500 
-for 2 people. Find flights leaving Friday evening and returning Sunday night.
-```
-
-### International Business Travel
-```
-I need to travel from New York to Tokyo for a conference June 20-25, 2025. 
-Find business class flights, luxury hotels near Tokyo Station, check weather 
-for appropriate clothing, and convert all costs to USD. Also find networking 
-events for tech professionals during that week.
-```
-
-### Family Vacation Planning  
-```
-Plan a family vacation to Orlando, Florida for July 15-22, 2025 for 2 adults 
-and 2 children (ages 8 and 12). We want to visit theme parks, but also need 
-backup indoor activities in case of rain. Budget is $8000 USD total.
+```json
+{
+  "mcpServers": {
+    "travel-concierge": {
+      "command": "uv",
+      "args": [
+        "--directory", "/path/to/your/mcp_travelassistant/",
+        "run", "python", "combined_travel_server.py"
+      ],
+      "env": {
+        "SERPAPI_KEY": "your_serpapi_key_here",
+        "AMADEUS_API_KEY": "your_amadeus_api_key_here",
+        "AMADEUS_API_SECRET": "your_amadeus_api_secret_here", 
+        "EXCHANGE_RATE_API_KEY": "your_exchange_rate_api_key_here"
+      }
+    }
+  }
+}
 ```
 
-### Multi-City European Tour
+### For HTTP Mode
+
+If you prefer running the server in HTTP mode:
+
+```json
+{
+  "mcpServers": {
+    "travel-concierge": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/client-http",
+        "http://localhost:8000/"
+      ]
+    }
+  }
+}
 ```
-Plan a 2-week European tour visiting London, Paris, Rome, and Barcelona 
-from August 5-19, 2025. Find the most efficient flight routing, centrally 
-located hotels, cultural events and museums, check weather patterns, 
-and provide a day-by-day itinerary with budget breakdown.
+
+Then run the server with: `python travel_server.py --transport http --port 8000`
+
+## 🎯 Available Tools
+
+### ✈️ Flight Search Tools
+
+| Tool | Provider | Description |
+|------|----------|-------------|
+| `search_flights_serpapi()` | Google Flights | Consumer flight search with price insights |
+| `search_flights_amadeus()` | Amadeus GDS | Professional airline inventory and fares |
+
+### 🏨 Hotel Search Tools
+
+| Tool | Provider | Description |
+|------|----------|-------------|
+| `search_hotels_serpapi()` | Google Hotels | Consumer hotel search with reviews |
+| `search_hotels_amadeus_by_city()` | Amadeus GDS | Professional city-based hotel search |
+| `search_hotels_amadeus_by_geocode()` | Amadeus GDS | Professional coordinate-based search |
+| `search_hotel_offers_amadeus()` | Amadeus GDS | Real-time hotel availability and pricing |
+
+### 🎭 Event & Activity Tools
+
+| Tool | Provider | Description |
+|------|----------|-------------|
+| `search_events_serpapi()` | Google Events | Local events and cultural experiences |
+| `search_activities_amadeus()` | Amadeus GDS | Professional tours and activities |
+
+### 🌍 Utility Tools
+
+| Tool | Provider | Description |
+|------|----------|-------------|
+| `geocode_location()` | Nominatim | Convert addresses to coordinates |
+| `calculate_distance()` | Geopy | Calculate distances between locations |
+| `get_weather_forecast()` | Open-Meteo | Weather forecasts for travel planning |
+| `get_current_conditions()` | Open-Meteo | Real-time weather conditions |
+| `convert_currency()` | ExchangeRate-API | Live currency conversion |
+| `lookup_stock()` | Google Finance | Travel industry stock tracking |
+
+## 🎨 Usage Examples
+
+### Comprehensive Trip Planning
+
+```python
+# Search for flights from multiple providers
+google_flights = search_flights_serpapi(
+    departure_id="JFK",
+    arrival_id="CDG", 
+    outbound_date="2025-06-15",
+    return_date="2025-06-22",
+    adults=2
+)
+
+amadeus_flights = search_flights_amadeus(
+    originLocationCode="JFK",
+    destinationLocationCode="CDG",
+    departureDate="2025-06-15",
+    returnDate="2025-06-22",
+    adults=2
+)
 ```
 
-## 🏗️ Architecture Benefits
+### Hotel Search Strategy
 
-### Modularity
-- Each server handles a specific domain expertly
-- Servers can be updated independently
-- Easy to add new capabilities (car rentals, restaurant reservations, etc.)
+```python
+# Get coordinates first
+location = geocode_location("Paris city center")
 
-### Scalability  
-- Servers can be distributed across different systems
-- Load balancing possible for high-traffic scenarios
-- Individual server failures don't bring down the entire system
+# Consumer search via Google Hotels
+google_hotels = search_hotels_serpapi(
+    location="Paris city center",
+    check_in_date="2025-06-15", 
+    check_out_date="2025-06-22"
+)
 
-### Data Privacy
-- No central data storage requirement
-- Each server handles its own data retention policies
-- Users control which servers to enable
+# Professional search via Amadeus
+amadeus_hotels = search_hotel_offers_amadeus(
+    cityCode="PAR",
+    checkInDate="2025-06-15",
+    checkOutDate="2025-06-22"
+)
+```
 
-### Extensibility
-- New travel-related servers can be added easily
-- Custom business logic can be implemented per server
-- Integration with enterprise travel management systems possible
+### Complete Trip Planning
 
-## 🔧 Troubleshooting Guide
+```python
+# 1. Get destination coordinates
+coords = geocode_location("Paris, France")
 
-### Common Integration Issues
+# 2. Check weather
+weather = get_weather_forecast(
+    latitude=coords['latitude'],
+    longitude=coords['longitude']
+)
 
-**Servers not communicating:**
-- Check all servers are running: `ps aux | grep python`
-- Verify Claude Desktop configuration paths
-- Ensure all API keys are valid and have sufficient quota
+# 3. Find events
+events = search_events_serpapi(
+    query="concerts museums",
+    location="Paris",
+    date_filter="week"
+)
 
-**Inconsistent results:**
-- Some APIs have rate limits - space out requests
-- Exchange rates and flight prices change frequently  
-- Weather forecasts become less accurate beyond 7 days
+# 4. Convert currency for budget planning
+budget_eur = convert_currency(
+    from_currency="USD",
+    to_currency="EUR", 
+    amount=2000
+)
+```
 
-**Budget calculations incorrect:**
-- Always use latest exchange rates from finance server
-- Account for booking fees and taxes in hotel/flight prices
-- Consider seasonal price variations
+## 🌟 Best Practices
 
-### Performance Optimization
+### 1. **Dual Search Strategy**
+Always search both platforms for flights and hotels to ensure you get the best deals and comprehensive options.
 
-- **Caching**: Most servers cache results locally to reduce API calls
-- **Parallel Processing**: Claude can query multiple servers simultaneously
-- **Smart Filtering**: Use broad searches first, then narrow with filters
+### 2. **Location First**
+Start with `geocode_location()` to get precise coordinates, then use those for location-based searches.
+
+### 3. **Weather Integration**
+Check weather forecasts before finalizing activity plans using `get_weather_forecast()`.
+
+### 4. **Currency Planning**
+Use `convert_currency()` for accurate international travel budgeting.
+
+## 🔄 Docker Support
+
+### Build and Run
+
+```bash
+# Build the Docker image
+docker build -t travel-concierge .
+
+# Run with environment variables
+docker run -p 8000:8000 \
+  -e SERPAPI_KEY=your_key \
+  -e AMADEUS_API_KEY=your_key \
+  -e AMADEUS_API_SECRET=your_secret \
+  -e EXCHANGE_RATE_API_KEY=your_key \
+  travel-concierge
+```
+
+### Docker Compose
+
+```bash
+# Copy environment file
+cp env.example .env
+
+# Edit .env with your API keys
+# Then run:
+docker-compose up
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Missing API Keys**
+   ```
+   Error: SERPAPI_KEY environment variable is required
+   ```
+   Solution: Set your API keys in the `.env` file or environment variables
+
+2. **Port Already in Use**
+   ```
+   Error: Port 8000 is already in use
+   ```
+   Solution: Use a different port with `--port 8001`
+
+3. **Amadeus Authentication Error**
+   ```
+   Error: Invalid API credentials
+   ```
+   Solution: Verify your Amadeus API key and secret are correct
+
+### Health Check
+When running in HTTP mode, visit `http://localhost:8000/health` to verify the server is running properly.
+
+## 📈 Performance
+
+- **Unified Architecture**: Single server reduces overhead and complexity
+- **Concurrent Requests**: Handles multiple simultaneous requests efficiently  
+- **Rate Limiting**: Built-in rate limiting for external API calls
+- **Error Handling**: Comprehensive error handling and recovery
 
 ## 🤝 Contributing
 
-This ecosystem thrives on community contributions:
-
-1. **New Server Types**: Restaurant reservations, car rentals, travel insurance
-2. **Enhanced Filtering**: More sophisticated preference matching
-3. **Better Integration**: Cross-server data sharing and caching
-4. **Mobile Support**: Extend MCP support to mobile travel apps
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Add tests if applicable
+5. Commit your changes (`git commit -m 'Add some amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
 ## 📄 License
 
-This travel assistant ecosystem is open source under the MIT License. Individual servers may have different licenses - check each server's documentation.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Amadeus for Developers** - Professional travel industry data
+- **SerpAPI** - Google Services integration  
+- **Open-Meteo** - Weather data services
+- **ExchangeRate-API** - Currency conversion services
+- **Nominatim/OpenStreetMap** - Geocoding services
 
 ## 🆘 Support
 
-For issues related to:
-- **Individual Servers**: Check the specific server's README and repository
-- **Integration Problems**: Create an issue in the main travel-assistant-mcp repository  
-- **Claude Desktop**: Visit Anthropic's support documentation
-- **API Issues**: Contact the respective API providers (SerpAPI, weather services, etc.)
+For support, please:
+1. Check the documentation above
+2. Review the example environment file
+3. Open an issue with detailed information about your problem
 
 ---
 
-**The power of MCP lies in its ability to orchestrate complex, multi-step workflows that would traditionally require multiple apps and manual coordination. With this travel assistant ecosystem, Claude becomes your intelligent travel agent, capable of handling sophisticated requests that span multiple domains and data sources.**
+**Happy Travels!** ✈️🏨🎭🌍
