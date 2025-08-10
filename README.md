@@ -9,7 +9,14 @@ This Travel Concierge Server integrates **two powerful travel platforms** into o
 - 🌐 **Google Travel Services** (via SerpAPI) - Consumer-friendly search across flights, hotels, and events
 - 🏢 **Amadeus Global Distribution System** - Professional travel industry inventory and pricing
 
-[▶ Watch Loom Video](https://www.loom.com/share/f865f975724b441fb31d88e20aa23067)
+<div>
+    <a href="https://www.loom.com/share/f865f975724b441fb31d88e20aa23067">
+      <p>MCP AI TRAVEL ASSISTANT - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/f865f975724b441fb31d88e20aa23067">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f865f975724b441fb31d88e20aa23067-488994d5a959c3ff-full-play.gif">
+    </a>
+  </div>
 
 Get the **best of both worlds**: consumer accessibility with professional depth!
 
